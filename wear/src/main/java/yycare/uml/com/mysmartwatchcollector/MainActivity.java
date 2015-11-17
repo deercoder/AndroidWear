@@ -128,4 +128,27 @@ public class MainActivity extends WearableActivity implements SensorEventListene
     }
 
 
+    /**
+     * This function is to initialize the actual sensor instance,
+     * It will be used for registered the listener to collect data
+     */
+    public void initSensorInstance() {
+
+        /// mLightSensor, mAccelerometerSensor ....
+
+    }
+
+    public void registerSensorListener() {
+
+        /// mSensorManager.registerListener(, mLight, ...) etc...
+    }
+
+    public void unregisterSensorListener() {
+        mSensorManager.unregisterListener(this);
+    }
+
+
+
 }
+
+
