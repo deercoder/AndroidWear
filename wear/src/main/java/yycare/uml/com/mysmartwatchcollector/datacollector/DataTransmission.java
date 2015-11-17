@@ -1,6 +1,5 @@
-package com.yycare.datacollector;
+package yycare.uml.com.mysmartwatchcollector.datacollector;
 
-import android.content.Context;
 import android.hardware.SensorManager;
 
 /**

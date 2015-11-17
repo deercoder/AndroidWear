@@ -1,16 +1,28 @@
 package yycare.uml.com.mysmartwatchcollector;
 
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends WearableActivity {
+// import external packages
+import yycare.uml.com.mysmartwatchcollector.*;
+import yycare.uml.com.mysmartwatchcollector.Sensor.MyWatchSensor;
+
+
+public class MainActivity extends WearableActivity implements SensorEventListener{
 
     private static final SimpleDateFormat AMBIENT_DATE_FORMAT =
             new SimpleDateFormat("HH:mm", Locale.US);
@@ -19,7 +31,11 @@ public class MainActivity extends WearableActivity {
     private TextView mTextView;
     private TextView mClockView;
 
+    // MyWatchSensor to manuplate the sensor class and member
+    private MyWatchSensor myWatchSensor;
 
+    // Sensor Manager to register/unregister
+    private SensorManager mSensorManager;
 
 
     @Override
@@ -31,6 +47,8 @@ public class MainActivity extends WearableActivity {
         mContainerView = (BoxInsetLayout) findViewById(R.id.container);
         mTextView = (TextView) findViewById(R.id.text);
         mClockView = (TextView) findViewById(R.id.clock);
+
+        initSensor();
     }
 
     @Override
@@ -44,6 +62,19 @@ public class MainActivity extends WearableActivity {
         super.onUpdateAmbient();
         updateDisplay();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+ //       mSensorManager.registerListener(this, mLight, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+//        mSensorManager.unregisterListener(this);
+    }
+
 
     @Override
     public void onExitAmbient() {
@@ -64,4 +95,30 @@ public class MainActivity extends WearableActivity {
             mClockView.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+
+    public void initSensor() {
+        myWatchSensor =  new MyWatchSensor((SensorManager) getSystemService(Context.SENSOR_SERVICE));
+        mSensorManager = myWatchSensor.getSensorManager();
+    }
+
+    public void registerSensor() {
+
+    }
+
+    public void unregisterSensor() {
+
+    }
+
+
 }

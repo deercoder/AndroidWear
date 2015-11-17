@@ -1,4 +1,4 @@
-package com.yycare.utils;
+package yycare.uml.com.mysmartwatchcollector.utils;
 
 /**
  * Created by Chang Liu on 11/16/15.
