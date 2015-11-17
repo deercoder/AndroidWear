@@ -43,6 +43,7 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         setContentView(R.layout.activity_main);
         setAmbientEnabled();
         initSensor();
+        testSensor();
 
         mContainerView = (BoxInsetLayout) findViewById(R.id.container);
         mTextView = (TextView) findViewById(R.id.text);
@@ -108,6 +109,14 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         myWatchSensor =  new MyWatchSensor((SensorManager) getSystemService(Context.SENSOR_SERVICE));
         mSensorManager = myWatchSensor.getSensorManager();
     }
+
+    public void testSensor() {
+        myWatchSensor.listAllSensorType();
+        myWatchSensor.listAccelerometerSensor();
+        myWatchSensor.listmAmbientTemperatureSensor();
+        myWatchSensor.listGyroscopeSensor();
+    }
+
 
     public void registerSensor(Sensor mSensor) {
         mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);

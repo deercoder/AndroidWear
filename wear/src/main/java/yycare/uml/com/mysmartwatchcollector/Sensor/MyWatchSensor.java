@@ -18,18 +18,18 @@ public class MyWatchSensor {
     // List of member variables for managing sensors
     private List<Sensor> mListSensor;
 
-    // lists of various types of sensors
-    private MyWatchSensor mAccelerometer;
-    private MyWatchSensor mAmbientTemperature;
-    private MyWatchSensor mGravity;
-    private MyWatchSensor mGyroscope;
-    private MyWatchSensor mLight;
-    private MyWatchSensor mLinearAcceleration;
-    private MyWatchSensor mMagneticField;
-    private MyWatchSensor mPressure;
-    private MyWatchSensor mProximity;
-    private MyWatchSensor mRelativeHumidity;
-    private MyWatchSensor mRotationVector;
+    // lists of various types of sensors(major types in Android Sensor Document)
+    private Sensor mAccelerometer;
+    private Sensor mAmbientTemperature;
+    private Sensor mGravity;
+    private Sensor mGyroscope;
+    private Sensor mLight;
+    private Sensor mLinearAcceleration;
+    private Sensor mMagneticField;
+    private Sensor mPressure;
+    private Sensor mProximity;
+    private Sensor mRelativeHumidity;
+    private Sensor mRotationVector;
 
     // for debugging
     private String LOG_SENSOR = "MyWatchSensor";
@@ -54,17 +54,72 @@ public class MyWatchSensor {
 
 
     /**
-     * This function is used for listing the sensor type for smart watch
+     * This function is used for listing the sensor type for smart watch, some may not belong to
+     * all t
      */
-    public void listSensorType() {
+    public void listAllSensorType() {
 
         // get all the sensor lists, each sensor is an Object
         // we can also get the specific sensor using specific type like MyWatchSensor.GYROSCOPE, etc...
-        List<android.hardware.Sensor> deviceSensors = mSensorManager.getSensorList(android.hardware.Sensor.TYPE_ALL);
+        List<Sensor> deviceSensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
 
-        //
+        // for debugging, print out all the sensor types
+        for (int i = 0; i < deviceSensors.size(); i++) {
+            Sensor mTestSensor = deviceSensors.get(i);
+            Log.d(LOG_SENSOR, "Sensor index is " + i);
+            Log.d(LOG_SENSOR, "Sensor name is " + mTestSensor.getName());
+            Log.d(LOG_SENSOR, "Sensor type is " + mTestSensor.getType());
+            Log.d(LOG_SENSOR, "Sensor String is " + mTestSensor.toString());
+        }
 
     }
+
+    /**
+     *  for listing Accelerometer sensor
+     *
+     *  NOTE: may have multiple sensors for the same type, we should use List
+     */
+    public void listAccelerometerSensor() {
+        List<Sensor> accelerometerSensors = mSensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+        for (int i = 0; i < accelerometerSensors.size(); i++) {
+            Sensor mTestSensor = accelerometerSensors.get(i);
+            Log.d(LOG_SENSOR, "Sensor String is " + mTestSensor.toString());
+            Log.d(LOG_SENSOR, "Sensor type is " + mTestSensor.getType() + " name is  " + mTestSensor.getName() + " index is " + i);
+        }
+    }
+
+    /**
+     *  for listing Ambient Temperature sensor
+     *
+     *  NOTE: may have multiple sensors for the same type, we should use List
+     *        For some devices(Sony watch3), there is no such types of sensors, so it's empty
+     */
+    public void listmAmbientTemperatureSensor() {
+        List<Sensor> ambientTemperatureSensors = mSensorManager.getSensorList(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        for (int i = 0; i < ambientTemperatureSensors.size(); i++) {
+            Sensor mTestSensor = ambientTemperatureSensors.get(i);
+            Log.d(LOG_SENSOR, "Sensor String is " + mTestSensor.toString());
+            Log.d(LOG_SENSOR, "Sensor type is " + mTestSensor.getType() + " name is  " + mTestSensor.getName() + " index is " + i);
+        }
+    }
+
+    /**
+     *  for listing Gyroscope sensor
+     *
+     *  NOTE: may have multiple sensors for the same type, we should use List
+     *  
+     */
+    public void listGyroscopeSensor() {
+        List<Sensor> gyroscopeSensors = mSensorManager.getSensorList(Sensor.TYPE_GYROSCOPE);
+        for (int i = 0; i < gyroscopeSensors.size(); i++) {
+            Sensor mTestSensor = gyroscopeSensors.get(i);
+            Log.d(LOG_SENSOR, "Sensor String is " + mTestSensor.toString());
+            Log.d(LOG_SENSOR, "Sensor type is " + mTestSensor.getType() + " name is  " + mTestSensor.getName() + "index is " + i);
+        }
+    }
+
+
+
 
 
     /**
