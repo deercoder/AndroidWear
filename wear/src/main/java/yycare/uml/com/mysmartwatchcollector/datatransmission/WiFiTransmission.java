@@ -11,8 +11,20 @@ public class WiFiTransmission {
     public WiFiTransmission() {
 
 
+
+
     }
 
+    public void setupConnection() {
+
+
+    }
+
+
+    public void initState() {
+
+
+    }
 
 
 }
