@@ -31,6 +31,11 @@ public class MyWatchSensor {
     private Sensor mRelativeHumidity;
     private Sensor mRotationVector;
 
+    // lists of sensor type for current device
+    private int sensorTypes[];
+    private int sensorNumb;
+
+
     // for debugging
     private String LOG_SENSOR = "MyWatchSensor";
 
@@ -55,7 +60,7 @@ public class MyWatchSensor {
 
     /**
      * This function is used for listing the sensor type for smart watch, some may not belong to
-     * all t
+     * the major/common types listed in Android DevDoc.
      */
     public void listAllSensorType() {
 
@@ -72,7 +77,33 @@ public class MyWatchSensor {
             Log.d(LOG_SENSOR, "Sensor String is " + mTestSensor.toString());
         }
 
+        // for debugging and future extension
+        setSensorTypes();
     }
+
+
+    /**
+     * Setting the array of sensor types and the actual sensor number
+     * This information can be used in future for adding more features, or using more sensors
+     */
+    public void setSensorTypes() {
+        List<Sensor> deviceSensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
+        sensorNumb = deviceSensors.size();
+        sensorTypes = new int[sensorNumb];
+        for (int i = 0; i < sensorNumb; i++) {
+            sensorTypes[i] = deviceSensors.get(i).getType();
+        }
+    }
+
+    public void listTypes() {
+        if (sensorTypes != null) {
+            for (int i = 0; i < sensorNumb; i++) {
+                Log.d(LOG_SENSOR, "types ===== " + sensorTypes[i]);
+            }
+        }
+    }
+
+
 
     /**
      *  for listing Accelerometer sensor
@@ -107,7 +138,7 @@ public class MyWatchSensor {
      *  for listing Gyroscope sensor
      *
      *  NOTE: may have multiple sensors for the same type, we should use List
-     *  
+     *
      */
     public void listGyroscopeSensor() {
         List<Sensor> gyroscopeSensors = mSensorManager.getSensorList(Sensor.TYPE_GYROSCOPE);
@@ -117,6 +148,9 @@ public class MyWatchSensor {
             Log.d(LOG_SENSOR, "Sensor type is " + mTestSensor.getType() + " name is  " + mTestSensor.getName() + "index is " + i);
         }
     }
+
+
+
 
 
 

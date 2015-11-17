@@ -115,6 +115,7 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         myWatchSensor.listAccelerometerSensor();
         myWatchSensor.listmAmbientTemperatureSensor();
         myWatchSensor.listGyroscopeSensor();
+        myWatchSensor.listTypes();
     }
 
 
