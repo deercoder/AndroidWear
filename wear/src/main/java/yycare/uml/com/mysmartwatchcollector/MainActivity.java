@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Locale;
 
 // import external packages
-import yycare.uml.com.mysmartwatchcollector.*;
 import yycare.uml.com.mysmartwatchcollector.Sensor.MyWatchSensor;
 
 
@@ -31,7 +30,7 @@ public class MainActivity extends WearableActivity implements SensorEventListene
     private TextView mTextView;
     private TextView mClockView;
 
-    // MyWatchSensor to manuplate the sensor class and member
+    // MyWatchSensor is to manuplate the sensor class and member
     private MyWatchSensor myWatchSensor;
 
     // Sensor Manager to register/unregister
@@ -43,12 +42,11 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setAmbientEnabled();
+        initSensor();
 
         mContainerView = (BoxInsetLayout) findViewById(R.id.container);
         mTextView = (TextView) findViewById(R.id.text);
         mClockView = (TextView) findViewById(R.id.clock);
-
-        initSensor();
     }
 
     @Override
@@ -113,7 +111,6 @@ public class MainActivity extends WearableActivity implements SensorEventListene
 
     public void registerSensor(Sensor mSensor) {
         mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
-
     }
 
     public void unregisterSensor() {
