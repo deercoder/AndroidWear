@@ -66,13 +66,12 @@ public class MainActivity extends WearableActivity implements SensorEventListene
     @Override
     public void onResume() {
         super.onResume();
- //       mSensorManager.registerListener(this, mLight, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-//        mSensorManager.unregisterListener(this);
+        unregisterSensor();
     }
 
 
@@ -112,12 +111,13 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         mSensorManager = myWatchSensor.getSensorManager();
     }
 
-    public void registerSensor() {
+    public void registerSensor(Sensor mSensor) {
+        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
     }
 
     public void unregisterSensor() {
-
+        mSensorManager.unregisterListener(this);
     }
 
 
