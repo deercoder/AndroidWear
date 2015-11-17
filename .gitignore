@@ -31,3 +31,5 @@ proguard/
 .google
 .gradle
 *.iml
+mobile/*.iml
+wear/*.iml
