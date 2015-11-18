@@ -72,6 +72,9 @@ public class MainActivity extends WearableActivity implements SensorEventListene
     @Override
     public void onResume() {
         super.onResume();
+
+        /* register the listener otherwise we cannot collect the sensor data */
+        registerSensorListener();
     }
 
     @Override
