@@ -18,19 +18,6 @@ public class MyWatchSensor {
     // List of member variables for managing sensors
     private List<Sensor> mListSensor;
 
-    // lists of various types of sensors(major types in Android Sensor Document)
-    private Sensor mAccelerometer;
-    private Sensor mAmbientTemperature;
-    private Sensor mGravity;
-    private Sensor mGyroscope;
-    private Sensor mLight;
-    private Sensor mLinearAcceleration;
-    private Sensor mMagneticField;
-    private Sensor mPressure;
-    private Sensor mProximity;
-    private Sensor mRelativeHumidity;
-    private Sensor mRotationVector;
-
     // lists of sensor type for current device
     private int sensorTypes[];
     private int sensorNumb;
