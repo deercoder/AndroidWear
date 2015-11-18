@@ -19,6 +19,7 @@ import java.util.Locale;
 
 // import external packages
 import yycare.uml.com.mysmartwatchcollector.Sensor.MyWatchSensor;
+import yycare.uml.com.mysmartwatchcollector.Sensor.SensorLists;
 
 
 public class MainActivity extends WearableActivity implements SensorEventListener{
@@ -36,6 +37,11 @@ public class MainActivity extends WearableActivity implements SensorEventListene
     // Sensor Manager to register/unregister
     private SensorManager mSensorManager;
 
+    // sensor instances
+    private SensorLists mSensorList;
+
+    // for logging and debugging
+    private String LOG_TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         setContentView(R.layout.activity_main);
         setAmbientEnabled();
         initSensor();
+        initSensorInstances();
         testSensor();
 
         mContainerView = (BoxInsetLayout) findViewById(R.id.container);
@@ -96,7 +103,15 @@ public class MainActivity extends WearableActivity implements SensorEventListene
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        int accuracy = event.accuracy;
+        Sensor s = event.sensor;
+        long timestamp = event.timestamp;
+        float[] values = event.values;
 
+        Log.d(LOG_TAG, "accuracy = " + accuracy + " timestamp = " + timestamp + " sensor's info " + s.toString());
+        for (int i = 0; i < values.length; i++) {
+            Log.d(LOG_TAG, "value " + i + " = " + values[i]);
+        }
     }
 
     @Override
@@ -132,20 +147,22 @@ public class MainActivity extends WearableActivity implements SensorEventListene
      * This function is to initialize the actual sensor instance,
      * It will be used for registered the listener to collect data
      */
-    public void initSensorInstance() {
-
-        /// mLightSensor, mAccelerometerSensor ....
-
+    public void initSensorInstances() {
+        mSensorList = new SensorLists(mSensorManager);
     }
 
     public void registerSensorListener() {
 
-        /// mSensorManager.registerListener(, mLight, ...) etc...
+        Sensor mLight = mSensorList.getDefaultLightSensor();
+        Sensor mAccelerometer = mSensorList.getDefaultAccelerometerSensor();
+        registerSensor(mLight);
+        registerSensor(mAccelerometer);
     }
 
     public void unregisterSensorListener() {
         mSensorManager.unregisterListener(this);
     }
+
 
 
 
