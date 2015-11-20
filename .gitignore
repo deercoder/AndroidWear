@@ -33,3 +33,4 @@ proguard/
 *.iml
 mobile/*.iml
 wear/*.iml
+wear/wear.iml
