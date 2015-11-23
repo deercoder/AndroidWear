@@ -1,4 +1,4 @@
-package yycare.uml.com.mysmartwatchcollector;
+package yycare.uml.com.mysmartwatchcollector.Test;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -14,16 +14,17 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-// import external packages
+import yycare.uml.com.mysmartwatchcollector.R;
 import yycare.uml.com.mysmartwatchcollector.Sensor.MyWatchSensor;
 import yycare.uml.com.mysmartwatchcollector.Sensor.SensorLists;
 import yycare.uml.com.mysmartwatchcollector.Thread.saveThread;
 
+// import external packages
 
-public class MainActivity extends WearableActivity implements SensorEventListener{
+
+public class TestActivity extends WearableActivity implements SensorEventListener{
 
     private static final SimpleDateFormat AMBIENT_DATE_FORMAT =
             new SimpleDateFormat("HH:mm", Locale.US);
