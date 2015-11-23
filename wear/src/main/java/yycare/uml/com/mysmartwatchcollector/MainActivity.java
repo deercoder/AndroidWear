@@ -20,6 +20,7 @@ import java.util.Locale;
 // import external packages
 import yycare.uml.com.mysmartwatchcollector.Sensor.MyWatchSensor;
 import yycare.uml.com.mysmartwatchcollector.Sensor.SensorLists;
+import yycare.uml.com.mysmartwatchcollector.Thread.saveThread;
 
 
 public class MainActivity extends WearableActivity implements SensorEventListener{
@@ -43,6 +44,9 @@ public class MainActivity extends WearableActivity implements SensorEventListene
     // for logging and debugging
     private String LOG_TAG = "MainActivity";
 
+    // thread for saving data
+    private saveThread mSaveThead;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,7 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         setAmbientEnabled();
         initSensor();
         initSensorInstances();
+        initThread();
         testSensor();
 
         mContainerView = (BoxInsetLayout) findViewById(R.id.container);
@@ -115,6 +120,7 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         for (int i = 0; i < values.length; i++) {
             Log.d(LOG_TAG, "value " + i + " = " + values[i]);
         }
+
     }
 
     @Override
@@ -134,6 +140,10 @@ public class MainActivity extends WearableActivity implements SensorEventListene
         myWatchSensor.listmAmbientTemperatureSensor();
         myWatchSensor.listGyroscopeSensor();
         myWatchSensor.listTypes();
+    }
+
+    public void initThread() {
+        mSaveThead = new saveThread(1000);
     }
 
 

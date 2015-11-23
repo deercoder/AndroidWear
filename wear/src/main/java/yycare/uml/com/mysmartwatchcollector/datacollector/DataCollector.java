@@ -8,6 +8,7 @@ import android.hardware.SensorManager;
  *
  * Description: class for collecting the sensor data, the format is SensorData, and the types
  *              and necesary function is as Sensor shows.
+ *              This class is also in charge of saving data into local files
  */
 public class DataCollector {
 
@@ -17,6 +18,15 @@ public class DataCollector {
 
 
     }
+
+    public void saveAccelerometer() {
+
+    }
+
+    public void saveGyroscope() {
+
+    }
+
 
 
 
